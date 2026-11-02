@@ -25,8 +25,10 @@ Tampilkan produk dengan komponen KartuProduk yang sudah ada, tanpa mengubah tamp
 ## US-02 Detail produk
 
 **Prompt:**
+Baca docs/user-stories.md bagian US-02. Ubah app/produk/[id]/page.jsx supaya mengambil satu produk dari tabel "produk" di Supabase berdasarkan id di URL, di sisi server, memakai koneksi Supabase yang sudah dibuat di lib/supabase. Kalau produk tidak ditemukan, panggil notFound(). Jangan ubah tampilannya. Hapus CatatanBelumAktif dari halaman ini, tapi biarkan tombol WhatsApp.
 
 **Hasil:**
+Memperbarui `app/produk/[id]/page.jsx` menjadi Server Component asinkron yang mengambil satu produk dari tabel "produk" di Supabase menggunakan `.eq("id", id).single()`. Jika produk tidak ditemukan atau query error, memanggil `notFound()`. Tampilan tidak diubah, `CatatanBelumAktif` dihapus, `TombolWhatsApp` dibiarkan.
 
 **Perbaikan:**
 

@@ -35,8 +35,10 @@ Memperbarui `app/produk/[id]/page.jsx` menjadi Server Component asinkron yang me
 ## US-03 Pesan via WhatsApp
 
 **Prompt:**
+Baca docs/rancangan-teknis.md bagian "Pesan WhatsApp (US-03)". Ubah components/TombolWhatsApp.jsx menjadi tautan yang membuka https://wa.me/ ke nomor di lib/toko.js, dengan pesan otomatis berisi nama dan harga produk dalam format rupiah. Pesan di-encode dengan encodeURIComponent dan dibuka di tab baru. Pertahankan tampilan tombolnya. Hapus CatatanBelumAktif yang menyebut US-03 di halaman detail produk.
 
 **Hasil:**
+Mengubah `components/TombolWhatsApp.jsx` dari `<button>` menjadi `<a>` yang mengarah ke `https://wa.me/{nomorWhatsApp}?text={pesan}`. Nomor diambil dari `lib/toko.js`, pesan berisi nama dan harga produk (format rupiah), di-encode dengan `encodeURIComponent`, dibuka di tab baru dengan `target="_blank"`. Tampilan kelas CSS tidak berubah. Halaman detail produk sudah bersih dari CatatanBelumAktif sejak US-02.
 
 **Perbaikan:**
 

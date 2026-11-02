@@ -37,6 +37,13 @@ export async function actionKeluar() {
 // US-05 — Ganti password
 // ---------------------------------------------------------------------------
 export async function actionGantiPassword(prevState, formData) {
+  // Periksa login di server terlebih dahulu (aturan keamanan #3)
+  const supabase = await createSessionClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    redirect("/admin/login");
+  }
+
   const passwordBaru = formData.get("password_baru")?.toString();
   const konfirmasi = formData.get("konfirmasi_password")?.toString();
 
@@ -49,14 +56,6 @@ export async function actionGantiPassword(prevState, formData) {
   }
   if (passwordBaru !== konfirmasi) {
     return { error: "Password baru dan konfirmasi tidak sama." };
-  }
-
-  const supabase = await createSessionClient();
-
-  // Pastikan admin sudah login
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    redirect("/admin/login");
   }
 
   const { error } = await supabase.auth.updateUser({ password: passwordBaru });

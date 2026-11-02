@@ -45,16 +45,24 @@ Mengubah `components/TombolWhatsApp.jsx` dari `<button>` menjadi `<a>` yang meng
 ## US-04 Login admin
 
 **Prompt:**
+Baca AGENTS.md bagian aturan keamanan dan docs/user-stories.md bagian US-04. Buat login admin memakai Supabase Auth (email dan password) dengan @supabase/ssr dan cookie, memakai SUPABASE_URL dan SUPABASE_PUBLISHABLE_KEY. Login diproses dengan Server Action di app/admin/actions.js dan disambungkan ke form di app/admin/login/page.jsx. Login berhasil diarahkan ke /admin; login gagal menampilkan pesan error yang jelas di halaman login. Buat juga tombol "Keluar" di components/NavAdmin.jsx berfungsi. Hapus CatatanBelumAktif dari halaman login.
 
 **Hasil:**
+- Membuat `lib/supabase/session.js`: koneksi Supabase sesi admin menggunakan `@supabase/ssr` + cookie, dengan `SUPABASE_PUBLISHABLE_KEY`.
+- Membuat `app/admin/actions.js` dengan Server Action `actionLogin` (login dengan email+password, redirect ke /admin jika berhasil, return error jika gagal) dan `actionKeluar` (signOut lalu redirect ke /admin/login).
+- Memperbarui `app/admin/login/page.jsx` menjadi Client Component dengan `useActionState` yang menyambungkan form ke `actionLogin` dan menampilkan pesan error.
+- Memperbarui `components/NavAdmin.jsx`: tombol Keluar dibungkus `<form action={actionKeluar}>` agar berfungsi sebagai Server Action.
 
 **Perbaikan:**
 
 ## US-05 Ganti password
 
 **Prompt:**
+Baca docs/user-stories.md bagian US-05. Buat Server Action ganti password di app/admin/actions.js untuk admin yang sedang login, memakai Supabase Auth. Validasi di server: password baru minimal 8 karakter dan harus sama dengan konfirmasi. Tampilkan pesan berhasil atau pesan error yang jelas di halaman. Sambungkan ke form di app/admin/password/page.jsx tanpa mengubah tampilannya. Hapus CatatanBelumAktif dari halaman ini.
 
 **Hasil:**
+- Menambahkan Server Action `actionGantiPassword` di `app/admin/actions.js`: validasi panjang minimal 8 karakter dan kecocokan konfirmasi di server, memeriksa sesi login sebelum memanggil `supabase.auth.updateUser`, mengembalikan `{ error }` atau `{ sukses }`.
+- Memperbarui `app/admin/password/page.jsx` menjadi Client Component dengan `useActionState` yang menampilkan pesan error (merah) atau pesan berhasil (hijau). Tampilan dan struktur form tidak berubah. `CatatanBelumAktif` dihapus.
 
 **Perbaikan:**
 

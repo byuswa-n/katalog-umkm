@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
  * Melindungi semua rute /admin kecuali /admin/login.
  * Admin yang belum login dialihkan ke /admin/login.
  */
-export async function middleware(request) {
+export async function proxy(request) {
   const { pathname } = request.nextUrl;
 
   // Biarkan /admin/login lewat tanpa pemeriksaan
@@ -60,4 +60,3 @@ export async function middleware(request) {
 export const config = {
   matcher: ["/admin/:path*"],
 };
-

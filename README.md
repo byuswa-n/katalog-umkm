@@ -74,7 +74,7 @@ Urutan yang disarankan: US-01, US-02, US-03, US-04, US-05, US-06, lalu fitur bon
 
 ## Tentang aplikasi ini
 
-- **Nama usaha:* NusaBite *
-- **Pembuat:* Uswatun Nisa *
-- **Link aplikasi:*katalog-umkm-l3ywtpzp8-uswatunnisa47-3745.vercel.app*
-- **Fitur bonus yang dikerjakan:*tidak ada*
+- \*_Nama usaha:_ NusaBite \*
+- \*_Pembuat:_ Uswatun Nisa \*
+- \**Link aplikasi:*katalog-umkm-l3ywtpzp8-uswatunnisa47-3745.vercel.app\*
+- \**Fitur bonus yang dikerjakan:*tidak ada\*
